@@ -490,6 +490,45 @@ function renderDictionary(){
     });
 }
 
+function buildChemicalOptionsHtml(placeholderText){
+
+    const placeholder =
+    `<option value="">${placeholderText}</option>`;
+
+    const options =
+    Object.keys(chemicals)
+    .map(name=>`<option value="${name}">${name}</option>`)
+    .join("");
+
+    return placeholder + options;
+}
+
+function refreshChemicalSelects(){
+
+    const configs = [
+        {selector:".chemSelect", placeholder:"選択または手入力"},
+        {selector:".dilutionChemical", placeholder:"選択"},
+        {selector:".stockChemical", placeholder:"選択"},
+        {selector:".impurityName", placeholder:"選択"}
+    ];
+
+    configs.forEach(({selector,placeholder})=>{
+
+        document.querySelectorAll(selector)
+        .forEach(select=>{
+
+            const current = select.value;
+
+            select.innerHTML =
+            buildChemicalOptionsHtml(placeholder);
+
+            if(current && chemicals.hasOwnProperty(current)){
+                select.value = current;
+            }
+        });
+    });
+}
+
 enableEdit.addEventListener("click",()=>{
     backupChemicals =
     JSON.parse(
@@ -575,6 +614,8 @@ saveDictionary.addEventListener("click",()=>{
         "chemicals",
         JSON.stringify(chemicals)
     );
+
+    refreshChemicalSelects();
 
     editMode=false;
 
@@ -715,6 +756,8 @@ undoDictionary.addEventListener("click",()=>{
     JSON.parse(
         JSON.stringify(backupChemicals)
     );
+
+    refreshChemicalSelects();
 
     renderDictionary();
 });
