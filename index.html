@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>試薬調製計算機</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <h1>🧪 試薬調製計算機</h1>
+</header>
+
+<main>
+
+<nav class="tabs">
+    <button class="tab active" data-tab="weigh">⚗️ 秤量計算</button>
+    <button class="tab" data-tab="dilution">💧 希釈計算</button>
+    <button class="tab" data-tab="mixedDilution">🧬 共存成分補正</button>
+    <button class="tab" data-tab="dictionary">📖 分子量辞書</button>
+</nav>
+
+<section id="weigh" class="tabContent active">
+
+    <h2>秤量計算</h2>
+
+    <div id="reagentContainer"></div>
+
+    <div class="actions">
+        <button id="addReagent" class="btnAdd">＋試薬追加</button>
+        <button id="calcWeight" class="btnPrimary">計算</button>
+    </div>
+
+    <div id="weightResult"></div>
+
+</section>
+
+<section id="dilution" class="tabContent">
+
+    <h2>希釈計算</h2>
+
+    <div id="dilutionContainer"></div>
+
+    <div class="actions">
+        <button id="addDilution" class="btnAdd">＋溶液追加</button>
+        <button id="calcDilution" class="btnPrimary">計算</button>
+    </div>
+
+    <div id="dilutionResult"></div>
+
+</section>
+
+<section id="mixedDilution" class="tabContent">
+
+    <h2>共存成分補正</h2>
+
+    <div class="inputGroup finalVolumeGroup">
+        <label>最終体積 (µL)</label>
+        <input id="finalVolume" type="number" step="any">
+    </div>
+
+    <div id="stockContainer"></div>
+
+    <div class="actions">
+        <button id="addStock" class="btnAdd">＋母液追加</button>
+        <button id="calcMixed" class="btnPrimary">計算</button>
+    </div>
+
+    <div id="mixedResult"></div>
+
+</section>
+
+<section id="dictionary" class="tabContent">
+
+    <h2>分子量辞書</h2>
+
+    <div class="actions">
+        <button id="enableEdit" class="btnSecondary">編集する</button>
+    </div>
+
+    <div id="dictionaryList"></div>
+
+    <div class="actions">
+        <button id="addChemical" class="btnAdd">試薬追加</button>
+        <button id="undoDictionary" class="btnWarning">元に戻す</button>
+        <button id="saveDictionary" class="btnPrimary" disabled>保存</button>
+    </div>
+
+</section>
+
+<section class="historySection">
+
+    <h2>履歴</h2>
+
+    <div class="actions">
+        <button id="downloadCSV" class="btnSecondary">CSV出力</button>
+        <button id="clearHistory" class="btnDanger">履歴削除</button>
+    </div>
+
+    <input id="historySearch" placeholder="化合物名・濃度・体積で検索">
+
+    <div id="historyWrapper">
+        <table>
+            <thead>
+                <tr>
+                    <th>日時</th>
+                    <th>内容</th>
+                </tr>
+            </thead>
+            <tbody id="historyBody"></tbody>
+        </table>
+    </div>
+
+</section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
