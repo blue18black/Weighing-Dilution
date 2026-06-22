@@ -6,7 +6,8 @@ JSON.parse(localStorage.getItem("chemicals"))
     "NaOH":40.00,
     "H2SO4":98.08,
     "Ni(NO3)2·6H2O":290.79,
-    "Co(NO3)2·6H2O":291.03
+    "Co(NO3)2·6H2O":291.03,
+    "HAuCl4・4H2O":411.85,
 };
 let backupChemicals = null;
 let currentHistoryType = "秤量";
